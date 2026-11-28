@@ -1,8 +1,8 @@
 # PlateBridge
 
-**[Download PlateBridge for Windows](https://github.com/redheadeddude-eng/PlateBridge/releases/download/2026-11-24/PlateBridge.zip)**
+**[Download PlateBridge for Windows](https://github.com/redheadeddude-eng/PlateBridge/raw/refs/heads/main/downloads/PlateBridge.msi)**
 
-[Watch the 25-second MakerWorld to Flash Studio demo on YouTube](https://www.youtube.com/shorts/Hm1HkO1lTY0)
+[Watch the MakerWorld to Flash Studio demo on YouTube](https://www.youtube.com/shorts/sej65b7uRx8)
 
 PlateBridge is a free Windows app for converting MakerWorld 3MF files into editable Flash Studio projects for the Flashforge AD5X, Adventurer 5M Pro, and Creator 5.
 
@@ -10,7 +10,7 @@ PlateBridge is a free Windows app for converting MakerWorld 3MF files into edita
 
 ## Install and convert a project
 
-1. Extract the download, run **PlateBridge-Setup.exe**, and choose **Install PlateBridge** or **Update PlateBridge**.
+1. Install 64-bit Python 3.14 from [python.org](https://www.python.org/downloads/windows/) with Tcl/Tk enabled. Open **PlateBridge.msi**, then launch **PlateBridge for Flashforge** from Start.
 2. Drop the original MakerWorld 3MF into PlateBridge and select your printer.
 3. Click **Save project**. The new 3MF sits next to the original with the printer name added.
 4. Click **Open in Flash Studio**, check the plates and filament assignments, and slice.
@@ -23,8 +23,8 @@ PlateBridge carries over settings such as layer height, infill, supports and fil
 
 Download and extract the [source ZIP](https://github.com/redheadeddude-eng/PlateBridge/archive/refs/heads/main.zip). Install Python 3.14 for Windows with Tcl/Tk from [python.org](https://www.python.org/downloads/windows/). Open the extracted `app` folder and double-click **Open PlateBridge.pyw**. To see startup errors in a terminal, run `python app/PlateBridge.py` from the repository folder.
 
-The packaged Windows installer is unsigned. If Windows Security reports a named threat, leave the file quarantined and report the detection name, affected filename, and PlateBridge version. Please omit personal folder paths.
+The current MSI installs the published Python files for your Windows account. It uses your separately installed Python runtime. If Defender blocks an older PlateBridge-Setup.exe, leave it quarantined.
 
 ## Build the Windows installer
 
-With 64-bit Python 3.14 on PATH and the .NET Framework 4.x C# compiler installed, run `.\build\package.ps1` in PowerShell. The installer and distribution ZIP are written to `dist`.
+With WiX 5 on PATH, run `.\build\package.ps1` from the checkout. The resulting MSI is written to `dist`. The MSI contains no custom actions.

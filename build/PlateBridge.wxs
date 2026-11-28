@@ -1,0 +1,37 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="PlateBridge for Flashforge" Manufacturer="SlimeLabz3D" Version="1.0.1127"
+      UpgradeCode="5f3b86c8-0fea-485b-b0fd-a13d43b60629" Scope="perUser">
+    <MajorUpgrade DowngradeErrorMessage="A newer PlateBridge is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Property Id="PYTHONW">
+      <RegistrySearch Id="UserPython" Root="HKCU" Key="Software\Python\PythonCore\3.14\InstallPath" Name="WindowedExecutablePath" Type="raw" Bitness="always64" />
+      <RegistrySearch Id="MachinePython" Root="HKLM" Key="Software\Python\PythonCore\3.14\InstallPath" Name="WindowedExecutablePath" Type="raw" Bitness="always64" />
+    </Property>
+    <Launch Condition="Installed OR PYTHONW" Message="Install 64-bit Python 3.14 from python.org with Tcl/Tk enabled, then reopen PlateBridge.msi." />
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramDir" Name="Programs">
+        <Directory Id="AppDir" Name="PlateBridge for Flashforge" />
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder" />
+    <DirectoryRef Id="AppDir">
+      <Component Id="SourceApp" Guid="7df839cf-d083-47e6-b6fc-576840957d0b">
+          <File Id="AppFile0" Source="$(var.AppDir)\PlateBridge.py" />
+          <File Id="AppFile1" Source="$(var.AppDir)\plateproject.py" />
+          <File Id="AppFile2" Source="$(var.AppDir)\plate_review.py" />
+          <File Id="AppFile3" Source="$(var.AppDir)\pocket_ui.py" />
+          <File Id="AppFile4" Source="$(var.AppDir)\creator5-native.json" />
+          <File Id="AppFile5" Source="$(var.AppDir)\printer-presets.json" />
+          <File Id="AppFile6" Source="$(var.AppDir)\PlateBridge.ico" />
+          <File Id="AppFile7" Source="$(var.AppDir)\Open PlateBridge.pyw" />
+        <Shortcut Id="StartMenu" Directory="ProgramMenuFolder" Name="PlateBridge for Flashforge" Target="[PYTHONW]"
+            Arguments="-I &quot;[#AppFile7]&quot;" WorkingDirectory="AppDir" Icon="AppIcon" />
+        <RegistryValue Root="HKCU" Key="Software\SlimeLabz3D\PlateBridge" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="CleanAppDir" Directory="AppDir" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+    <Icon Id="AppIcon" SourceFile="$(var.AppDir)\PlateBridge.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+    <Feature Id="Main"><ComponentRef Id="SourceApp" /></Feature>
+  </Package>
+</Wix>
