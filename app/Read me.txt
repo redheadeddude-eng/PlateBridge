@@ -1,0 +1,8 @@
+PlateBridge for Flashforge - Windows Python edition
+
+1. Install Python 3.14 for Windows from https://www.python.org/downloads/windows/ with Tcl/Tk support.
+2. Extract this entire ZIP to a folder.
+3. Double-click Open PlateBridge.pyw. If Windows asks for an app, choose your installed Python interpreter.
+4. Drop a 3MF, choose a printer, and save the project.
+
+If Windows Security reports a threat, leave it quarantined and report the detection name and affected filename to the project.

@@ -18,3 +18,13 @@ PlateBridge is a free Windows app for converting MakerWorld 3MF files into edita
 PlateBridge carries over settings such as layer height, infill, supports and filament colors. Machine-specific settings come from the selected printer profile. The installer includes fallback profiles for all three supported printers.
 
 [Download the demo video](PlateBridge-demo.mp4)
+
+## Run from the published source on Windows
+
+Download and extract the [source ZIP](https://github.com/redheadeddude-eng/PlateBridge/archive/refs/heads/main.zip). Install Python 3.14 for Windows with Tcl/Tk from [python.org](https://www.python.org/downloads/windows/). Open the extracted `app` folder and double-click **Open PlateBridge.pyw**. To see startup errors in a terminal, run `python app/PlateBridge.py` from the repository folder.
+
+The packaged Windows installer is unsigned. If Windows Security reports a named threat, leave the file quarantined and report the detection name, affected filename, and PlateBridge version. Please omit personal folder paths.
+
+## Build the Windows installer
+
+With 64-bit Python 3.14 on PATH and the .NET Framework 4.x C# compiler installed, run `.\build\package.ps1` in PowerShell. The installer and distribution ZIP are written to `dist`.
